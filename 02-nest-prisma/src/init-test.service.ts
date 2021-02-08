@@ -7,7 +7,7 @@ export class InitTestService {
   constructor(private prisma: PrismaService) {}
 
   async init() {
-    for (let i = 1; i < 10; i++) {
+    for (let i = 10; i < 20; i++) {
       const email = 'eee' + i + '@rrr.rr';
       const newUser: Prisma.UserCreateInput = { email: email };
 
@@ -21,6 +21,7 @@ export class InitTestService {
         const newPost: Prisma.PostCreateInput = {
           title: 'title N' + j,
           content: 'content N' + j,
+          published: true,
           author: { connect: { email: user.email } },
         };
         const post = await this.prisma.post.create({
