@@ -1,5 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
-import { UserService } from '../service/user.service';
+import { Controller, Get, Post } from '@nestjs/common';
+import { User } from './user.schema';
+import { UserService } from './user.service';
 
 @Controller('user')
 export class UserController {
@@ -12,5 +13,9 @@ export class UserController {
   @Get('show')
   async showUsers() {
     return this.entityService.findAll();
+  }
+  @Post('create')
+  async create(user: User) {
+    return this.entityService.create(user);
   }
 }
